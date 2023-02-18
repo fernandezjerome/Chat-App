@@ -26,7 +26,6 @@
                     />
 
                     <button
-                        @click="dispatchUsername"
                         v-on:click="isHidden = true"
                         id="usernameSubmit"
                         class="btn"
@@ -44,10 +43,13 @@
                 </div>
                 <section class="chat">
                     <!-- Messages box -->
+                    <div class="typing-event">
+                        <p v-if="typing">{{ typist }}</p>
+                        <usertyping></usertyping>
+                    </div>
                     <section class="messages">
                         <div class="recieve_container">
-                            <h2>MY CHAT SCREEN</h2>
-                            <ul id="messages">
+                            <ul>
                                 <!-- render a new message component for every message -->
                                 <newmsg
                                     v-for="message in messages"
@@ -65,12 +67,8 @@
                                 @focus="catchTextFocus"
                                 v-model="message"
                                 id="textarea"
-                                class="message"
                                 autocomplete="off"
                             ></textarea>
-
-                            <p v-if="typing">{{ typist }}</p>
-                            <usertyping>typing</usertyping>
 
                             <input
                                 @click.prevent="dispatchMessage"

@@ -10,6 +10,7 @@ function setUserID({ sID }) {
 }
 
 function showNewMessage({ message }) {
+    message.time = new Date().toLocaleTimeString();
     vm.messages.push(message);
     console.log(message);
 }
