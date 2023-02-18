@@ -15,6 +15,12 @@ function showNewMessage({ message }) {
 
 function handleUserTyping(user) {
     console.log("user is typing a message");
+    vm.typing = user;
+    vm.typist = user.id !== vm.socketID ? `${user.name} is typing...` : " ";
+
+    setTimeout(() => {
+        vm.typist = " ";
+    }, 3000);
 }
 
 const { createApp } = Vue;
