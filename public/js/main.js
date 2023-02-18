@@ -43,7 +43,10 @@ const vm = createApp({
             socketID: "",
             message: "",
             messages: [],
+            User: [],
+            typing: "",
             nickname: "",
+            typist: "",
         };
     },
 
