@@ -25,7 +25,7 @@ function handleUserTyping(user) {
 }
 
 function beepAudio() {
-    const audio = new Audio("./audio/chat.mp3");
+    const audio = new Audio("./audio/mail_sent");
     audio.currentTime = 0;
     audio.pause();
 
