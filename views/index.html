@@ -1,72 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    
-    <link rel="stylesheet" href="css/main.css">    
-    <title>Chat</title>
-</head>
-<body>
-    <h1 class="maintag">Chat App</h1>
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <main id="app">
-        	<section id="popupShow" v-if="!isHidden">
-			<input v-model="nickname" type="text" id="username" class="username" placeholder="pick a username">
-			<input @click="dispatchUsername" v-on:click="isHidden = true" id="usernameSubmit" type="submit">
-	
-		</section>
-
-        <section class="messages">
-            <div class="recieve_container">
-            <h2>MY CHAT SCREEN</h2>
-            <ul id="messages">
-                <!-- render a new message component for every message -->
-                <newmsg v-for="message in messages" :message="message"></newmsg>
-            </ul>
-            </div>
-        </section>
-        <section>
-            <div class="name-container">
-                
-            <!-- nickname box-->
-            <div class="nickname-container">
-                <div class="chatroom">
-           
+        <link rel="stylesheet" href="css/main.css" />
+        <title>Chat</title>
+    </head>
+    <body>
+        <main id="app">
+            <!-- login page -->
+            <section id="login-overlay" v-if="!isHidden">
+                <div class="title">
+                    <p>Welcome to</p>
+                    <h1>ChatAPP</h1>
                 </div>
-                <h2 class="nickname">Write your Nickname to get started:</h2>
-                <!-- <input id="nickname" v-model="nickname" type="text" placeholder="Nickname?" class="nickname-box">   -->
-            </div>
+                <div class="login-box">
+                    <input
+                        v-model="nickname"
+                        type="text"
+                        id="username"
+                        class="username"
+                        placeholder="pick a nickname"
+                    />
 
-            <!-- Message container-->
-            <div class="message_container">
-                <h2 class="input">Type Your Message:</h2>
-                <form>
-                <label for="message">Something to say?</label>
-                <textarea @focus="catchTextFocus" v-model="message" id="textarea" class="message" autocomplete="off"></textarea>
+                    <button
+                        @click="dispatchUsername"
+                        v-on:click="isHidden = true"
+                        id="usernameSubmit"
+                        class="btn"
+                        type="submit"
+                    >
+                        Confirm
+                    </button>
+                </div>
+            </section>
 
-            <!-- typing event -->    
+            <section class="center">
+                <div class="title">
+                    <p>Welcome to</p>
+                    <h1>ChatAPP</h1>
+                </div>
+                <section class="chat">
+                    <!-- Messages box -->
+                    <section class="messages">
+                        <div class="recieve_container">
+                            <h2>MY CHAT SCREEN</h2>
+                            <ul id="messages">
+                                <!-- render a new message component for every message -->
+                                <newmsg
+                                    v-for="message in messages"
+                                    :message="message"
+                                ></newmsg>
+                            </ul>
+                        </div>
+                    </section>
 
-                <!-- handle user typing-->
-                <p v-if="typing">{{ typist }}</p>
-                <usertyping>typing</usertyping>
-                <!-- handle user typing-->
+                    <!-- Message container-->
 
-            <!-- send button --> 
+                    <section>
+                        <form class="message_container">
+                            <textarea
+                                @focus="catchTextFocus"
+                                v-model="message"
+                                id="textarea"
+                                class="message"
+                                autocomplete="off"
+                            ></textarea>
 
-                <input @click.prevent="dispatchMessage" type="submit" value="Send" class="send">
-                </form>
-            </div>
-        </section>
+                            <p v-if="typing">{{ typist }}</p>
+                            <usertyping>typing</usertyping>
 
-        <!-- chat screen -->
-        
+                            <input
+                                @click.prevent="dispatchMessage"
+                                type="submit"
+                                value="Send"
+                                class="send btn"
+                            />
+                        </form>
+                    </section>
+                </section>
+            </section>
+        </main>
 
-    </main>
-
-    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
-    <script src="/socket.io/socket.io.js"></script>
-    <script src="/js/main.js" type="module" defer></script>
-</body>
+        <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script src="/js/main.js" type="module" defer></script>
+    </body>
 </html>
