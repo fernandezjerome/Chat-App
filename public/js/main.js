@@ -24,6 +24,17 @@ function handleUserTyping(user) {
     }, 3000);
 }
 
+function beepAudio() {
+    const audio = new Audio("./audio/chat.mp3");
+    audio.currentTime = 0;
+    audio.pause();
+
+    if (vm.messages) {
+        console.log("message received");
+        audio.play();
+    }
+}
+
 const { createApp } = Vue;
 
 const vm = createApp({
@@ -67,3 +78,4 @@ const vm = createApp({
 socket.addEventListener("connected", setUserID);
 socket.addEventListener("new_message", showNewMessage);
 socket.addEventListener("typing", handleUserTyping);
+socket.addEventListener("new_message", beepAudio);
