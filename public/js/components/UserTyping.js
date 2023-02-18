@@ -2,10 +2,13 @@ export default {
     name: "UserTypingCompont",
 
     template: `
+
     <div>
-        <div> {{typist}} </div>
-     </div>
+    <div class="typing">{{typist}}</div>
+    <!-- other chat components -->
+  </div>
     `,
+
     data() {
         return {
             typing: "",

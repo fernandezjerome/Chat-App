@@ -1,6 +1,6 @@
 // import will always go on top
 import chatMsg from "./components/ChatMessage.js";
-import Usertyping from "./components/UserTyping.js";
+import UserTyping from "./components/Usertyping.js";
 
 const socket = io();
 
@@ -17,20 +17,18 @@ function showNewMessage({ message }) {
 function handleUserTyping(user) {
     console.log("user is typing a message");
     vm.typing = user;
-    vm.typist = user.id !== vm.socketID ? `${user.name} is typing...` : " ";
-
+    vm.typist = user.id !== vm.socketID ? user.name + " is typing..." : " ";
     setTimeout(() => {
         vm.typist = " ";
     }, 3000);
 }
 
+//play audio once the messsage is reiceved
 function beepAudio() {
-    const audio = new Audio("./audio/mail_sent");
+    const audio = new Audio("./audio/mail_sent.mp3");
     audio.currentTime = 0;
     audio.pause();
-
     if (vm.messages) {
-        console.log("message received");
         audio.play();
     }
 }
@@ -47,6 +45,7 @@ const vm = createApp({
             typing: "",
             nickname: "",
             typist: "",
+            isHidden: false,
         };
     },
 
@@ -74,7 +73,7 @@ const vm = createApp({
 
     components: {
         newmsg: chatMsg,
-        usertyping: Usertyping,
+        usertyping: UserTyping,
     },
 }).mount("#app");
 
