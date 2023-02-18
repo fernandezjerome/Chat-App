@@ -1,5 +1,6 @@
 // import will always go on top
 import chatMsg from "./components/ChatMessage.js";
+import Usertyping from "./components/UserTyping.js";
 
 const socket = io();
 
@@ -59,6 +60,7 @@ const vm = createApp({
 
     components: {
         newmsg: chatMsg,
+        usertyping: UserTyping,
     },
 }).mount("#app");
 
