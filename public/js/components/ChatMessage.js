@@ -1,21 +1,30 @@
 export default {
-    name: 'TheChatMessageComponent',
-    props: ['message'],
+    name: "TheChatMessageComponent",
+    props: ["message"],
 
     template: `
-    <article class="chat-messages" :class="{ 'other-messages' : matchedID }">
-        <h2>{{ message.name }} says:</h2>
-        <p>{{ message.content }}</p>
+
+    <article class="chat-messages" :class= " { 'other-messages' :matchedID }">
+    <div> <p> <span>{{ message.time }} </span> </p> </div>
+    <div class="chat-window">   
+        <h2> {{ message.name }}:</h2>
+        <div class="contentm">    
+        <p>{{message.content }}</p>
+        
+        </div>
+    </div>
+
+    <p></p>
     </article>
     `,
 
     data() {
         return {
-            message: 'hello from the template',
-            // every time an incoming message arrives, check against the user Id to see if this is ours.
-            // if it IS, apply a CSS class to indicate that it's ours
-            // if it ISN'T, apply a different CSS class to make that obvious
-            matchedID: this.$parent.socketID == this.message.id
-        }
-    }
-}
+            message: "hello from the chat message component",
+            // every time an incoming message arrives from the server, we'll check to see if it's from the current user.
+            // if it is, we'll set this to true, which will trigger the CSS class to be applied to the message.
+            // if it is not from the current user, we'll set this to false, which will trigger the CSS class to be applied to the message.
+            matchedID: this.$parent.socketID == this.message.id,
+        };
+    },
+};
