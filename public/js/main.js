@@ -71,7 +71,7 @@ const vm = createApp({
 
     components: {
         newmsg: chatMsg,
-        usertyping: UserTyping,
+        usertyping: Usertyping,
     },
 }).mount("#app");
 
