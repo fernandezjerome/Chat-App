@@ -12,6 +12,9 @@ Clone, NPM install and run npm start
 
 Connect to the chat service via localhost and chat away!
 
+## Dev design doc
+https://drive.google.com/drive/folders/1hhIQdEQrjOiZmUebtXIyabweupbpN2Jw?usp=sharing
+
 ## Contributing
 
 1. Fork it!
